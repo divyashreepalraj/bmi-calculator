@@ -1,0 +1,6 @@
+
+### Short portfolio description
+
+If you're adding this to your **portfolio project list**, I'd use:
+
+> **Responsive BMI Calculator** — A clean and responsive health & wellness web application that calculates BMI using Metric and Imperial units, provides visual weight classification, and presents standard BMI health categories in an accessible interface.

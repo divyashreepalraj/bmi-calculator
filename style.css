@@ -1,13 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
 :root {
 --primary_text: #0F172A;
 --secondary_text: #475569;
+--border: #E2E8F0;
+--white: #fff;
 }
 
 body {
     background-color: #F8FAFC;
-    font-family: "Poppins", sans-serif;
+    font-family: "Inter", sans-serif;
     color: var(--secondary_text);
 }
 
@@ -24,8 +26,8 @@ body {
 }
 
 .navBg {
-    background-color: #fff;
-    border-bottom: 1px solid #E2E8F0;
+    background-color: var(--white);
+    border-bottom: 1px solid var(--border);
 }
 
 .calcSecParent {
@@ -48,11 +50,11 @@ body {
     gap: 10px;
     align-items: center;
     font-size: 14px;
-    font-weight: 500;
+    font-weight: 600;
 }
 
 .calcbadge span {
-    background: #99F6E4;
+    background: #10B981;
     width: 10px;
     height: 10px;
     border-radius: 50%;
@@ -62,9 +64,293 @@ body {
 .calcHead {
     color: var(--primary_text);
     margin: 12px 0;
+    font-weight: 700;
 }
 
 p.calcSubHead {
     width: 70%;
     margin: auto;
+}
+
+.calculation_sec_parent {
+    background: var(--white);
+    border: 1px solid var(--border);
+    padding: 25px;
+    border-radius: 10px;
+    margin-top: 30px;
+}
+
+.calcTab {
+    justify-content: center;
+    background: #F1F5F9;
+    width: fit-content;
+    margin: 0 auto;
+    padding: 4px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+}
+
+.calcTabLink {
+    color: var(--secondary_text);
+    display: flex;
+    gap: 13px;
+    padding: 10px 25px;
+    font-weight: 500;
+}
+
+.active.calcTabLink {
+ color: var(--primary_text);
+ background-color: var(--white);
+ border-radius: 5px;
+}
+
+.form_field {
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    width: 49%;
+}
+
+.formField_parent {
+    display: flex;
+    gap: 2%;
+    width: 100%;
+}
+
+
+.form_field label {
+    font-weight: 500;
+    font-size: 14px;
+    color: var(--primary_text);
+}
+
+.lable_parent {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.unitText {
+    font-size: 13px;
+}
+
+.formParent {
+    margin-top: 30px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid var(--border);
+}
+
+.input-group-text {
+    background: none;
+    border: 0px;
+    font-size: 14px;
+    color: var(--primary_text);
+    font-weight: 600;
+    position: absolute;
+    right: 0;
+}
+
+.input-group {
+    align-items: center;
+}
+.form-control {
+    border-radius: 5px !important;
+}
+
+.btn {
+    border-radius: 5px;
+    font-weight: 500;
+}
+
+.submit {
+    background-color: #0D9488;
+    color: var(--white);
+    width: 100%;
+}
+
+.reset {
+    border: 1px solid var(--border);
+}
+
+.btn_grp {
+    display: flex;
+    gap: 1.5%;
+    justify-content: center;
+}
+
+.scoreStat_Parent {
+    background: #F8FAFC;
+    margin: 30px 0;
+    padding: 25px 20px;
+    border-radius: 10px;
+}
+
+.scoreDisplay_Parent {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 25px;
+}
+
+.scoreDisplayRight p {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.scoreDisplayRight p:last-child {
+    display: flex;
+    align-items: end;
+    margin: 10px 0;
+    line-height: 0.4;
+    color: var(--primary_text);
+    gap: 3px;
+}
+
+.scoreDisplayRight {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: left;
+}
+
+.scoreStat_content {
+    font-size: 14px;
+    text-align: left;
+    margin-top: 20px;
+}
+
+
+
+
+.bmi-scale {
+  position: relative;
+  width: 100%;
+  padding-top: 32px;
+}
+
+/* Progress bar */
+.bmi-progress {
+  display: flex;
+  width: 100%;
+  height: 12px;
+  overflow: hidden;
+  border-radius: 10px;
+  background: #eee;
+  gap: 4px;
+}
+
+.bmi-segment {
+  height: 100%;
+}
+.bmiNumber {
+    position: absolute;
+}
+/* 16 - 18.5 */
+.underweight {
+  /* flex: 2.5; */
+  background: #6dc5eb;
+  width: 20%;
+}
+
+.bmiNumber1 {
+    left: 0%;
+}
+
+
+/* 18.5 - 25 */
+.normal {
+  /* flex: 6.5; */
+  background: #31c98f;
+  width: 32%;
+}
+
+.bmiNumber2 {
+    left: 18%;
+}
+
+/* 25 - 30 */
+.overweight {
+  /* flex: 5; */
+  background: #f8b824;
+  width: 25%;
+}
+
+.bmiNumber3 {
+    left: 49%;
+}
+
+
+/* 30 - 40 */
+.obese {
+  /* flex: 10; */
+  background: #f36b7d;
+  width: 23%;
+}
+
+.bmiNumber4 {
+    left: 75%;
+}
+
+.bmiNumber5 {
+    left: 97%;
+}
+
+
+/* BMI value */
+.bmi-marker {
+  position: absolute;
+  top: 0;
+  transform: translateX(-50%);
+  z-index: 2;
+}
+
+.bmi-marker span {
+  position: relative;
+  display: block;
+  padding: 1px 8px;
+  background: #17243a;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 20px;
+  border-radius: 4px;
+}
+
+/* Small downward triangle */
+.bmi-marker span::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -5px;
+  transform: translateX(-50%);
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid #17243a;
+}
+
+/* Labels */
+.bmi-labels {
+  /* display: flex;
+  justify-content: space-between; */
+    margin-top: 2px;
+  margin-bottom: 10px;
+  color: #3d4b63;
+  font-size: 14px;
+  font-weight: 500;
+  width: 100%;
+}
+
+p.scoreStat_content {
+    margin: 0;
+    padding-top: 48px;
+}
+
+.labels {
+    display: flex;
+    gap: 4%;
+}
+.bmiscore {
+    font-size: 32px;
+    font-weight: 700;
 }
