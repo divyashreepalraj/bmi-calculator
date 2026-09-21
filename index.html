@@ -18,7 +18,7 @@
     <div class="collapse navbar-collapse navLink_parent" id="navbarSupportedContent">
       <ul class="navbar-nav mb-2 mb-lg-0 navLink">
         <li class="nav-item">
-          <a class="nav-link active " aria-current="page" href="#">Calculator</a>
+          <a class="nav-link active " aria-current="page" href="#calcSec">Calculator</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">BMI Guide</a>
@@ -38,7 +38,7 @@
 <!-- calculaltion area starts  -->
 
 
-    <div class="calculation_sec_parent">
+    <div class="calculation_sec_parent" id="calcSec">
       <ul class="nav mb-3 calcTab" id="pills-tab" role="tablist">
         <li class="nav-item" role="presentation">
           <button class="nav-link active calcTabLink" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true"> <img src="./images/metricicon.svg" alt="metricicon">Metric (cm, kg)</button>
@@ -58,7 +58,7 @@
                   <p id="height" class="unitText">Centimeters</p>
                 </div>
                 <div class="input-group mb-3">
-                  <input type="number" class="form-control" id="heightField" aria-describedby="heightField" value="172"  step="1">
+                  <input type="number" class="form-control" id="heightField" aria-describedby="heightField" placeholder="Enter height"   step="1">
                   <span class="input-group-text" id="basic-addon2 unitValue">cm</span>
                 </div>
               </div>
@@ -69,7 +69,7 @@
                   <p id="weight" class="unitText">Kilograms</p>
                 </div>
                 <div class="input-group mb-3">
-                  <input type="number" class="form-control" id="weightField" aria-describedby="weightField" value="66.5"  step="0.1">
+                  <input type="number" class="form-control" id="weightField" aria-describedby="weightField" placeholder="Enter weight"  step="0.1">
                   <span class="input-group-text" id="basic-addon2 unitValue">kg</span>
                 </div>
               </div>
@@ -120,7 +120,7 @@
 
             <div class="btn_grp">
               <button type="submit" class="btn submit"  id="submit">Calculate BMI</button>
-              <button type="reset" class="btn reset">Reset</button>
+              <button type="reset" class="btn reset" id="reset">Reset</button>
             </div>
           </form>
         </div>
@@ -135,25 +135,19 @@
   <div class="scoreDisplay_Parent">
     <div class="scoreDisplayRight">
       <p>YOUR CALCULATED SCORE</p>
-      <p><span id="bmiscore" class="bmiscore">22.5</span> <span id="bmiscoreUnit">kg/m²</span></p>
+      <p><span id="bmiscore" class="bmiscore">0.0</span> <span id="bmiscoreUnit">kg/m²</span></p>
     </div>
     <div class="weightIndicator">
-      <div class="calcbadge" id="weightIndicator"><span></span> Normal Weight</div>
+      <div class="calcbadge grey" id="weightIndicator"><span></span> Enter Values </div>
     </div>
   </div>
 
 
-  <!-- <div class="progress">
-    <div class="progress-bar" role="progressbar" style="width: 15%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
-    <div class="progress-bar bg-success" role="progressbar" style="width: 30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
-    <div class="progress-bar bg-info" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-  </div> -->
-
   <div class="bmi-scale">
 
     <!-- Current BMI -->
-    <div class="bmi-marker" style="left: 27.08%;">
-      <span>22.5</span>
+    <div class="bmi-marker" id="marker_parent">
+      <span id="bmi_marker">--</span>
     </div>
 
     <!-- Progress Bar -->
@@ -175,7 +169,7 @@
 
   </div>
 
-  <p class="scoreStat_content">Your BMI is within the normal weight range. Maintaining a balanced diet and regular physical activity supports ongoing wellness.</p>
+  <p class="scoreStat_content" id="scoreStat_content">Your BMI is within the normal weight range. Maintaining a balanced diet and regular physical activity supports ongoing wellness.</p>
 
 
 </div>

@@ -28,6 +28,8 @@ body {
 .navBg {
     background-color: var(--white);
     border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
 }
 
 .calcSecParent {
@@ -61,6 +63,49 @@ body {
     display: block;
 }
 
+.grey {
+    border-color: #e2e8f0;
+    background: #f1f5f9;
+    color: #334155;
+}
+
+.grey span {
+    background: #94a3b8;
+}
+
+
+.blue {
+    border-color: #bae6fd;
+    background: #f0f9ff;
+    color: #075985;
+}
+
+.blue span {
+    background: #0ea5e9;
+}
+
+.orange {
+    border-color: #fde68a;
+    background: #fffbeb;
+    color: #92400e;
+}
+
+.orange span {
+    background: #f59e0b;
+}
+
+.red {
+    border-color: #fecdd3;
+    background: #fff1f2;
+    color: #9f1239;
+}
+
+.red span {
+    background: #f43f5e;
+}
+
+
+
 .calcHead {
     color: var(--primary_text);
     margin: 12px 0;
@@ -68,7 +113,7 @@ body {
 }
 
 p.calcSubHead {
-    width: 70%;
+    width: clamp(280px, 70%, 720px);
     margin: auto;
 }
 
@@ -90,6 +135,13 @@ p.calcSubHead {
     border: 1px solid var(--border);
 }
 
+.active.calcTabLink {
+ color: var(--primary_text);
+ background-color: var(--white);
+ border-radius: 5px;
+}
+
+
 .calcTabLink {
     color: var(--secondary_text);
     display: flex;
@@ -98,11 +150,11 @@ p.calcSubHead {
     font-weight: 500;
 }
 
-.active.calcTabLink {
- color: var(--primary_text);
- background-color: var(--white);
- border-radius: 5px;
+
+.calcTabLink:hover {
+    color: var(--primary_text);
 }
+
 
 .form_field {
     display: flex;
@@ -162,14 +214,24 @@ p.calcSubHead {
     font-weight: 500;
 }
 
-.submit {
-    background-color: #0D9488;
-    color: var(--white);
+.submit, .submit:active {
+    background-color: #0D9488 !important;
+    color: var(--white) !important;
     width: 100%;
+}
+
+.submit:hover {
+    color: white;
+    background-color: #13ad9f;
+    border-color: var(--bs-btn-hover-border-color);
 }
 
 .reset {
     border: 1px solid var(--border);
+}
+
+.reset:hover {
+    background-color: #f6f6f6;
 }
 
 .btn_grp {
@@ -353,4 +415,29 @@ p.scoreStat_content {
 .bmiscore {
     font-size: 32px;
     font-weight: 700;
+}
+
+input::placeholder {
+    font-size: 14px;
+}
+.bmi-scale {
+    position: relative;
+}
+
+#bmi_marker {
+    position: absolute;
+    transform: translateX(-50%);
+    width: max-content;
+}
+
+@media screen and (max-width: 1024px) {
+    .calcSecParent {
+        width: 85%;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    p.calcSubHead {
+        width: 100%;
+    }
 }
