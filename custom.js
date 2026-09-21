@@ -1,98 +1,239 @@
-const form = document.querySelector(".formParent");
-// let weightIndicator = ""
+const forms = document.querySelectorAll(".formParent");
+
+const metricForm = forms[0];
+const imperialForm = forms[1];
+
 const weightIndicator = document.getElementById("weightIndicator");
-    let statContent = ""
+const statContent = document.getElementById("scoreStat_content");
+
+const bmiScore = document.getElementById("bmiscore");
+const bmiMarker = document.getElementById("bmi_marker");
+const markerParent = document.getElementById("marker_parent");
+
+const metricTab = document.getElementById("pills-home-tab");
+const imperialTab = document.getElementById("pills-profile-tab");
 
 
+// Reset BMI result
+function resetResult() {
 
-function calculateBMI() {
+    bmiScore.innerText = "0.0";
 
-    const height = Number(document.getElementById("heightField").value);
-    const weight = Number(document.getElementById("weightField").value);
+    bmiMarker.innerText = "--";
+
+    markerParent.style.left = "0%";
+
+    weightIndicator.innerHTML = "<span></span> Enter Values";
+    weightIndicator.className = "calcbadge grey";
+
+    statContent.innerHTML =
+        "Please enter valid height and weight values to calculate your Body Mass Index score.";
+}
 
 
-    if (!height || !weight) {
-        document.getElementById("bmiScore").innerHTML = "0.0";
-        document.getElementById("bmi_marker").innerHTML = "0.0";
-        document.getElementById("weightIndicator").innerHTML = " ";
-        return;
-    }
+// Clear form inputs
+function clearForms() {
 
-    const heightInMeters = height / 100;
+    forms.forEach(function (form) {
 
-    const bmi = weight / (heightInMeters * heightInMeters);
+        const inputs = form.querySelectorAll("input");
 
-    document.getElementById("bmiscore").innerText = bmi.toFixed(1);
+        inputs.forEach(function (input) {
+            input.value = "";
+        });
 
-    document.getElementById("bmi_marker").innerText = bmi.toFixed(1);
+    });
+}
 
-    const bmiMarker = document.getElementById("marker_parent");
+
+// Update BMI result
+function updateResult(bmi) {
+
+    bmiScore.innerText = bmi.toFixed(1);
+
+    bmiMarker.innerText = bmi.toFixed(1);
+
+
+    // Marker position
+
     let markerPosition;
+
     if (bmi <= 18.5) {
-        markerPosition = ((bmi - 16) / (18.5 - 16)) * 19.5;
+
+        markerPosition =
+            ((bmi - 16) / (18.5 - 16)) * 19.5;
+
     } else if (bmi <= 25) {
-        markerPosition = 19.5 + ((bmi - 18.5) / (25 - 18.5)) * 32;
+
+        markerPosition =
+            19.5 + ((bmi - 18.5) / (25 - 18.5)) * 32;
+
     } else if (bmi <= 30) {
-        markerPosition = 51.5 + ((bmi - 25) / (30 - 25)) * 25.5;
+
+        markerPosition =
+            51.5 + ((bmi - 25) / (30 - 25)) * 25.5;
+
     } else {
-        markerPosition = 77 + ((bmi - 30) / (40 - 30)) * 23;
+
+        markerPosition =
+            77 + ((bmi - 30) / (40 - 30)) * 23;
+
     }
 
     markerPosition = Math.max(0, Math.min(markerPosition, 100));
 
-    bmiMarker.style.left = markerPosition + "%";
+    markerParent.style.left = markerPosition + "%";
 
 
-    let bmiScore = bmi;
+    // Weight indicator
 
-    if (bmiScore <= 18.5) {
+    if (bmi < 18.5) {
+
         weightIndicator.innerHTML = "<span></span> Underweight";
         weightIndicator.className = "calcbadge blue";
-    } else if (bmiScore <= 24.9) {
+
+        statContent.innerHTML =
+            "Your BMI indicates you are <b>underweight</b>. It may be beneficial to discuss nutritional support and health status with a healthcare professional.";
+
+    } else if (bmi < 25) {
+
         weightIndicator.innerHTML = "<span></span> Normal Weight";
-        weightIndicator.className = "calcbadge green"
-    } else if (bmiScore <= 29.9) {
+        weightIndicator.className = "calcbadge green";
+
+        statContent.innerHTML =
+            "Your BMI is within the <b>normal weight</b> range. Maintaining a balanced diet and regular physical activity supports ongoing wellness.";
+
+    } else if (bmi < 30) {
+
         weightIndicator.innerHTML = "<span></span> Overweight";
-        weightIndicator.className = "calcbadge orange"
+        weightIndicator.className = "calcbadge orange";
+
+        statContent.innerHTML =
+            "Your BMI indicates you are in the <b>overweight</b> category. Healthy lifestyle modifications, such as regular physical activity and balanced nutrition, are recommended.";
+
     } else {
+
         weightIndicator.innerHTML = "<span></span> Obesity";
-        weightIndicator.className = "calcbadge red"
+        weightIndicator.className = "calcbadge red";
+
+        statContent.innerHTML =
+            "Your BMI is categorized as <b>obese</b>. Consulting with a healthcare provider can provide personalized guidance regarding metabolic health and lifestyle adjustments.";
     }
-
-    // scoreStat_content
-
-
-   if (bmiScore <= 18.5) {
-        statContent = document.getElementById("scoreStat_content").innerHTML = 'Your BMI indicates you are <b>underweight</b>. It may be beneficial to discuss nutritional support and health status with a healthcare professional.';
-    } else if (bmiScore <= 24.9) {
-        statContent = document.getElementById("scoreStat_content").innerHTML = "Your BMI is within the <b>normal weight</b> range. Maintaining a balanced diet and regular physical activity supports ongoing wellness.";
-    } else if (bmiScore <= 29.9) {
-        statContent = document.getElementById("scoreStat_content").innerHTML = "Your BMI indicates you are in the <b>overweight</b> category. Healthy lifestyle modifications, such as regular physical activity and balanced nutrition, are recommended.";
-    } else {
-        statContent = document.getElementById("scoreStat_content").innerHTML = "Your BMI is categorized as <b>obese</b>. Consulting with a healthcare provider can provide personalized guidance regarding metabolic health and lifestyle adjustments.";
-    }
+}
 
 
 
-};
-
-document.getElementById("heightField").addEventListener("input", calculateBMI);
-document.getElementById("weightField").addEventListener("input", calculateBMI);
+// METRIC CALCULATION
 
 
-form.addEventListener("submit", function(e) {
+metricForm.addEventListener("submit", function (e) {
+
     e.preventDefault();
-    calculateBMI();
+
+    const height = Number(
+        metricForm.querySelector("#heightField").value
+    );
+
+    const weight = Number(
+        metricForm.querySelector("#weightField").value
+    );
+
+
+    if (!height || !weight || height <= 0 || weight <= 0) {
+
+        resetResult();
+        return;
+    }
+
+
+    const heightInMeters = height / 100;
+
+    const bmi =
+        weight / (heightInMeters * heightInMeters);
+
+    updateResult(bmi);
 });
 
 
-form.addEventListener("reset", function() {
-    document.getElementById("bmiscore").innerHTML = "0.0";
-    weightIndicator.innerHTML = "<span></span> Enter Values";
-    weightIndicator.className = "calcbadge grey";
 
-    document.getElementById("bmi_marker").innerHTML = "--";
+// IMPERIAL CALCULATION
 
-    const bmiMarker = document.getElementById("bmi_marker").parentElement;
-    bmiMarker.style.left = "0%";
-})
+
+imperialForm.addEventListener("submit", function (e) {
+
+    e.preventDefault();
+
+    const inputs = imperialForm.querySelectorAll("input");
+
+    const feet = Number(inputs[0].value);
+    const inches = Number(inputs[1].value);
+    const weight = Number(inputs[2].value);
+
+
+    if (
+        feet <= 0 ||
+        inches < 0 ||
+        weight <= 0 ||
+        isNaN(feet) ||
+        isNaN(inches) ||
+        isNaN(weight)
+    ) {
+
+        resetResult();
+        return;
+    }
+
+
+    // Convert feet + inches into total inches
+
+    const totalInches =
+        (feet * 12) + inches;
+
+
+    // Imperial BMI formula
+
+    const bmi =
+        (weight * 703) /
+        (totalInches * totalInches);
+
+
+    updateResult(bmi);
+});
+
+
+
+// TAB CHANGE
+
+
+metricTab.addEventListener("click", function () {
+
+    clearForms();
+    resetResult();
+});
+
+
+imperialTab.addEventListener("click", function () {
+
+    clearForms();
+    resetResult();
+});
+
+
+
+// RESET BUTTONS
+
+
+forms.forEach(function (form) {
+
+    form.addEventListener("reset", function () {
+
+        setTimeout(function () {
+
+            clearForms();
+            resetResult();
+
+        }, 0);
+
+    });
+
+});

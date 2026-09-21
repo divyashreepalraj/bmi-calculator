@@ -32,8 +32,12 @@ body {
     top: 0;
 }
 
+.navBg .container {
+    justify-content: center;
+}
+
 .calcSecParent {
-    width: 50%;
+    width: 65%;
     margin: 0 auto;
     text-align: center;
 }
@@ -429,6 +433,18 @@ input::placeholder {
     transform: translateX(-50%);
     width: max-content;
 }
+
+footer p {
+    margin: 0 auto;
+    padding: 15px 0;
+    background: white;
+    text-align: center;
+    border-top: 1px solid var(--border);
+    color: var(--secondary_text);
+    font-size: 14px;
+    font-weight: 500;
+}
+
 
 @media screen and (max-width: 1024px) {
     .calcSecParent {
