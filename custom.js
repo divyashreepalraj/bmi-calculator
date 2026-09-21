@@ -1,7 +1,7 @@
 
-const submit = document.getElementById("submit");
+const form = document.querySelector(".formParent");
 
-submit.addEventListener("click", function (e) {
+form.addEventListener("submit", function (e) {
 
     e.preventDefault();
 
@@ -15,23 +15,27 @@ submit.addEventListener("click", function (e) {
     document.getElementById("bmiscore").innerText = bmi.toFixed(1);
 
 
+
+
+    let bmiScore = bmi;
+
+      let weightIndicator = ""
+      if (bmiScore <= 18.5) {
+         weightIndicator = document.getElementById("weightIndicator").innerHTML = '<span></span> Underweight';
+      } else if (bmiScore <= 24.9) {
+         weightIndicator = document.getElementById("weightIndicator").innerHTML = "<span></span> Normal Weight";
+      } else if (bmiScore <= 29.9) {
+         weightIndicator = document.getElementById("weightIndicator").innerHTML = "<span></span> Overweight";
+      } else {
+         weightIndicator = document.getElementById("weightIndicator").innerHTML = "<span></span> Obesity";
+      }
+
+
+
 });
 
 
 
 
-
-
-let bmiScore = document.getElementById("bmiscore").innerText;
-let weightIndicator = ""
- if (bmiScore <= 18.5) {
-    weightIndicator = document.getElementById("weightIndicator").innerHTML = '<span></span> Underweight';
- } else if (bmiScore <= 24.9) {
-    weightIndicator = document.getElementById("weightIndicator").innerHTML = "<span></span> Normal Weight";
- } else if (bmiScore <= 29.9) {
-    weightIndicator = document.getElementById("weightIndicator").innerHTML = "<span></span> Overweight";
- } else {
-    weightIndicator = document.getElementById("weightIndicator").innerHTML = "<span></span> Obesity";
- }
 
   
